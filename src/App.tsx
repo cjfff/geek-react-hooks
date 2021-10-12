@@ -1,24 +1,33 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+/*
+ * @Author: your name
+ * @Date: 2021-10-12 22:33:13
+ * @LastEditTime: 2021-10-12 23:13:47
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: /geek-react-hooks/src/App.tsx
+ */
+import React from "react";
+import { BrowserRouter, NavLink } from "react-router-dom";
+import { renderRoutes } from "react-router-config";
+import routes from "./routes";
+
+const links = routes[0].routes;
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <BrowserRouter>
+        <div>
+          {links!.map((item) => {
+            return (
+              <NavLink to={item.path as string} key={item.path as string}>
+                {item.path}
+              </NavLink>
+            );
+          })}
+        </div>
+        {renderRoutes(routes)}
+      </BrowserRouter>
     </div>
   );
 }
